@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This schema defines two models: Lender and LenderInterestRate.
+/// 
+/// Lender model has the following fields:
+/// - id: Int, primary key, auto-incremented
+/// - name: String
+/// - createdAt: DateTime, default value is the current timestamp when the row is created
+/// - updatedAt: DateTime, updated automatically when the row is updated
+/// - lenderInterestRates: LenderInterestRate[], one-to-many relation with LenderInterestRate model
+///
+/// LenderInterestRate model has the following fields:
+/// - id: Int, primary key, auto-incremented
+/// - lender: Lender, many-to-one relation with Lender model
+/// - lenderId: Int, foreign key to Lender model
+/// - rate: Float
+/// - createdAt: DateTime, default value is the current timestamp when the row is created
+/// - updatedAt: DateTime, updated automatically when the row is updated
+model Lender {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lenderInterestRates LenderInterestRate[]
+}
+
+model LenderInterestRate {
+  id        Int      @id @default(autoincrement())
+  lender    Lender   @relation(fields: [lenderId], references: [id])
+  lenderId  Int
+  rate      Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
