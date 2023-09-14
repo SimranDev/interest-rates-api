@@ -8,4 +8,23 @@ export class LendersService {
   getAllLenders() {
     return this.prisma.lender.findMany();
   }
+
+  getAllLendersWithLoanProducts() {
+    return this.prisma.lender.findMany({
+      include: { loanProducts: true },
+    });
+  }
+
+  async getLenderByIdentifier(identifier: string) {
+    const lender = await this.prisma.lender.findUnique({
+      where: { identifier },
+      include: { loanProducts: true },
+    });
+
+    if (!lender) {
+      throw new Error(`No lender found for identifier: ${identifier}`);
+    }
+
+    return lender;
+  }
 }
