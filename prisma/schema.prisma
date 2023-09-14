@@ -12,10 +12,10 @@ model Lender {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  lenderProducts LenderProducts[]
+  loanProducts LoanProducts[]
 }
 
-model LenderProducts {
+model LoanProducts {
   id        Int      @id @default(autoincrement())
   name      String
   rate      Decimal
