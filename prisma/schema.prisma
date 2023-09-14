@@ -6,22 +6,37 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model Lender {
   id        String      @id @default(uuid())
   identifier String      @unique
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  loanProducts LoanProducts[]
+  loanProducts LoanProduct[]
 }
 
-model LoanProducts {
-  id        Int      @id @default(autoincrement())
+model LoanProduct {
+  id        String      @id @default(uuid())
   name      String
-  rate      Decimal
+  rates     ProductRate[]
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt
   lender    Lender   @relation(fields: [lenderId], references: [id])
   lenderId  String
+}
+
+model ProductRate {
+  id        Int      @id @default(autoincrement())
+  floating  Decimal
+  fixed12Months Decimal
+  fixed24Months Decimal
+  fixed36Months Decimal
+  fixed48Months Decimal
+  fixed60Months Decimal
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt
+  loanProduct LoanProduct @relation(fields: [loanProductId], references: [id])
+  loanProductId String
 }
 
