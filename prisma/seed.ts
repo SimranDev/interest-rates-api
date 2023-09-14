@@ -30,18 +30,12 @@ async function main() {
     data: {
       name: 'ANZ Fixed Rate Home Loan',
       lenderId: anz.id,
-      rates: {
-        create: [
-          {
-            floating: 3.5,
-            fixed12Months: 3.6,
-            fixed24Months: 3.7,
-            fixed36Months: 3.8,
-            fixed48Months: 3.9,
-            fixed60Months: 4.0,
-          },
-        ],
-      },
+      floating: null,
+      fixed12Months: 3.6,
+      fixed24Months: 3.7,
+      fixed36Months: 3.8,
+      fixed48Months: null,
+      fixed60Months: 4.0,
     },
   });
 
@@ -49,18 +43,12 @@ async function main() {
     data: {
       name: 'ANZ Variable Rate Home Loan',
       lenderId: anz.id,
-      rates: {
-        create: [
-          {
-            floating: 3.4,
-            fixed12Months: 3.5,
-            fixed24Months: 3.6,
-            fixed36Months: 3.7,
-            fixed48Months: 3.8,
-            fixed60Months: 3.9,
-          },
-        ],
-      },
+      floating: 3.4,
+      fixed12Months: null,
+      fixed24Months: 3.6,
+      fixed36Months: null,
+      fixed48Months: 3.8,
+      fixed60Months: 3.9,
     },
   });
 
@@ -68,18 +56,12 @@ async function main() {
     data: {
       name: 'ASB Fixed Rate Home Loan',
       lenderId: asb.id,
-      rates: {
-        create: [
-          {
-            floating: 2.8,
-            fixed12Months: 2.9,
-            fixed24Months: 3.0,
-            fixed36Months: 3.1,
-            fixed48Months: 3.2,
-            fixed60Months: 3.3,
-          },
-        ],
-      },
+      floating: 2.8,
+      fixed12Months: 2.9,
+      fixed24Months: null,
+      fixed36Months: 3.1,
+      fixed48Months: 3.2,
+      fixed60Months: null,
     },
   });
 
@@ -87,24 +69,17 @@ async function main() {
     data: {
       name: 'Westpac Fixed Rate Home Loan',
       lenderId: westpac.id,
-      rates: {
-        create: [
-          {
-            floating: 2.0,
-            fixed12Months: 2.1,
-            fixed24Months: 2.2,
-            fixed36Months: 2.3,
-            fixed48Months: 2.4,
-            fixed60Months: 2.5,
-          },
-        ],
-      },
+      floating: 2.0,
+      fixed12Months: null,
+      fixed24Months: 2.2,
+      fixed36Months: 2.3,
+      fixed48Months: null,
+      fixed60Months: 2.5,
     },
   });
 }
 
 async function clearDatabase() {
-  await prisma.productRate.deleteMany();
   await prisma.loanProduct.deleteMany();
   await prisma.lender.deleteMany();
 }
