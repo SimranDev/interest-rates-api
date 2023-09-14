@@ -24,7 +24,7 @@ async function main() {
     },
   });
 
-  await prisma.lenderProducts.createMany({
+  await prisma.loanProducts.createMany({
     data: [
       {
         lenderId: anz.id,
@@ -67,7 +67,7 @@ async function main() {
 }
 
 async function clearDatabase() {
-  await prisma.lenderProducts.deleteMany();
+  await prisma.loanProducts.deleteMany();
   await prisma.lender.deleteMany();
 }
 
