@@ -7,16 +7,16 @@ export class LendersController {
 
   @Get()
   getLenders() {
-    return this.lendersService.getAllLenders();
-  }
-
-  @Get(':identifier')
-  getLenderByIdentifier(@Param('identifier') identifier: string) {
-    return this.lendersService.getLenderByIdentifier(identifier);
+    return this.lendersService.getLenders();
   }
 
   @Get('products')
-  getLendersWithLoanProducts() {
-    return this.lendersService.getAllLendersWithLoanProducts();
+  getLenderProducts() {
+    return this.lendersService.getLenderProducts();
+  }
+
+  @Get('products/:identifier')
+  getLenderByIdentifier(@Param('identifier') identifier: string) {
+    return this.lendersService.getLenderByIdentifier(identifier);
   }
 }

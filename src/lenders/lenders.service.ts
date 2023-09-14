@@ -5,11 +5,11 @@ import { PrismaService } from 'src/prisma.service';
 export class LendersService {
   constructor(private prisma: PrismaService) {}
 
-  getAllLenders() {
+  getLenders() {
     return this.prisma.lender.findMany();
   }
 
-  getAllLendersWithLoanProducts() {
+  getLenderProducts() {
     return this.prisma.lender.findMany({
       include: { loanProducts: true },
     });
