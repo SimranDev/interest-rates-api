@@ -29,6 +29,7 @@ model LoanProduct {
   updatedAt     DateTime @updatedAt
   lender        Lender   @relation(fields: [lenderId], references: [id])
   lenderId      String
+  @@unique([name, lenderId])
 }
 
 
