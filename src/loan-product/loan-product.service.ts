@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma.service';
 export class LoanProductService {
   constructor(private prisma: PrismaService) {}
 
-  getAllLoanProducts() {
+  getLoanProducts() {
     return this.prisma.loanProduct.findMany();
   }
 }

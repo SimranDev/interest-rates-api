@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { LoanProductService } from './loan-product.service';
 
-@Controller('loan-product')
-export class LoanProductController {}
+@Controller('loan-products')
+export class LoanProductController {
+  constructor(private loanProduct: LoanProductService) {}
+
+  @Get()
+  getLoanProducts() {
+    return this.loanProduct.getLoanProducts();
+  }
+}
