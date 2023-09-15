@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron } from '@nestjs/schedule';
 import * as puppeteer from 'puppeteer';
 import { PrismaService } from 'src/prisma.service';
 
@@ -9,7 +9,8 @@ export class ScraperService {
 
   constructor(private prisma: PrismaService) {}
 
-  @Cron(CronExpression.EVERY_12_HOURS)
+  // @Cron(CronExpression.EVERY_12_HOURS)
+  @Cron('0 * * * *')
   async handleCron() {
     this.logger.debug('Cron job started');
     try {
